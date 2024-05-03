@@ -11,16 +11,14 @@ def model_train(x_train, y_train, x_val, y_val, char_index):
     """Trains the model with the given parameters and data."""
 
     params = {'loss_function': 'binary_crossentropy',
-                        'optimizer': 'adam',
-                        'sequence_length': 200,
-                        'batch_train': 5000,
-                        'batch_test': 5000,
-                        'categories': ['phishing', 'legitimate'],
-                        'char_index': None,
-                        'epoch': 30,
-                        'embedding_dimension': 50}
-
-
+              'optimizer': 'adam',
+              'sequence_length': 200,
+              'batch_train': 5000,
+              'batch_test': 5000,
+              'categories': ['phishing', 'legitimate'],
+              'char_index': None,
+              'epoch': 30,
+              'embedding_dimension': 50}
 
     model = Sequential()
     voc_size = len(char_index.keys())
@@ -56,21 +54,19 @@ def model_train(x_train, y_train, x_val, y_val, char_index):
 
     model.add(Dense(len(params['categories'])-1, activation='sigmoid'))
 
-
-
-    #compile the model
+    # compile the model
     model.compile(loss=params['loss_function'], optimizer=params['optimizer'], metrics=['accuracy'])
 
-
     hist = model.fit(x_train, y_train,
-                    batch_size=params['batch_train'],
-                    epochs=params['epoch'],
-                    shuffle=True,
-                    validation_data=(x_val, y_val)
-                    )
+                     batch_size=params['batch_train'],
+                     epochs=params['epoch'],
+                     shuffle=True,
+                     validation_data=(x_val, y_val)
+                     )
     return model, hist
 
-#main function
+
+# main function
 def main():
     """Trains the model and stores results in a folder."""
     input_folder = "data/interim"
@@ -92,6 +88,7 @@ def main():
     dump(model, f'{output_folder}/model.joblib')
     dump(hist, f'{output_folder}/hist.joblib')
     print("Model saved at output folder")
+
 
 if __name__ == "__main__":
     main()
