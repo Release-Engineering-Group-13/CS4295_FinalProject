@@ -37,3 +37,5 @@ stages:
     outs:
     - data/interim/confusion_mat.joblib
     - data/interim/report.joblib
+    metrics:
+    - output/metrics.json

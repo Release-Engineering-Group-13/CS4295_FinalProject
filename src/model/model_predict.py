@@ -1,4 +1,5 @@
 from joblib import dump, load
+import json
 import os
 
 import numpy as np
@@ -21,9 +22,10 @@ def model_predict(x_test, y_test, model):
     # Calculate confusion matrix
     confusion_mat = confusion_matrix(y_test, y_pred_binary)
     print('Confusion Matrix:', confusion_mat)
-    print('Accuracy:',accuracy_score(y_test,y_pred_binary))
+    accuracy = accuracy_score(y_test,y_pred_binary)
+    print('Accuracy:',accuracy)
 
-    return report, confusion_mat
+    return report, confusion_mat, accuracy
 
 def main():
 
@@ -41,7 +43,7 @@ def main():
     y_test = load(f'{input_folder}/y_data.joblib')[2]
 
     # Predict
-    report, confusion_mat = model_predict(x_test, y_test, model)
+    report, confusion_mat, accuracy = model_predict(x_test, y_test, model)
 
     output_folder = "data/interim"
     if not os.path.exists(output_folder):
@@ -50,6 +52,20 @@ def main():
     dump(report, f'{output_folder}/report.joblib')
     dump(confusion_mat, f'{output_folder}/confusion_mat.joblib')
     print("Report and Confusion Matrix saved at output folder")
+
+    precision = confusion_matrix[1][1] / (confusion_matrix[1][1] + confusion_matrix[0][1])
+    sensitivity = confusion_matrix[1][1] / (confusion_matrix[1][1] + confusion_matrix[1][0])
+    metrics = {
+        "True Negatives": confusion_matrix[0][0],
+        "True Positives": confusion_matrix[1][1],
+        "False Negatives": confusion_matrix[1][0],
+        "False Positives": confusion_matrix[0][1],
+        "Precision": precision,
+        "Sensitivity": sensitivity,
+        "Accuracy": accuracy,
+        "F1 Score": 2 * precision * sensitivity / (precision + sensitivity)
+    }
+    json.dump(metrics, open("output/metrics.json", "w"))
 
 
 if __name__ == "__main__":
