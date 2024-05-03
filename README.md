@@ -44,13 +44,18 @@ To set up the project, follow these steps:
     poetry run python main.py
     ```
 
-## Running pylint and dslinter
+## Running linters
 1. Install pylint and dslinter:
    ```bash
    pip install pylint==2.13
    pip install dslinter
+   pip install flake8
    ```
-2. Execute pylint with dslinter plugin:
+2. Run pylint:
    ```bash
-   pylint --load-plugins=dslinter path\to\file.py
+   pylint path\to\file.py
+   ```
+3. Run flake8:
+   ```bash
+   flake8 --max-line-length=100 path\to\file.py
    ```
