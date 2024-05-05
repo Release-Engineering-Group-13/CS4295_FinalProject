@@ -1,17 +1,22 @@
-from joblib import dump, load
-import os
+"""This module uses the trained model to make predictions and evaluates the model's performance."""
 
+import os
+from joblib import dump, load
+
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import numpy as np
-from sklearn.metrics import classification_report, confusion_matrix,accuracy_score
+np.random.seed(0)
+
 
 def model_predict(x_test, y_test, model):
+    """Makes predictions using the trained model and determines model accuracy."""
     # predict
     y_pred = model.predict(x_test, batch_size=1000)
     print(y_pred)
 
     # Convert predicted probabilities to binary labels
     y_pred_binary = (np.array(y_pred) > 0.5).astype(int)
-    y_test=y_test.reshape(-1,1)
+    y_test = y_test.reshape(-1, 1)
 
     # Calculate classification report
     report = classification_report(y_test, y_pred_binary)
@@ -21,12 +26,13 @@ def model_predict(x_test, y_test, model):
     # Calculate confusion matrix
     confusion_mat = confusion_matrix(y_test, y_pred_binary)
     print('Confusion Matrix:', confusion_mat)
-    print('Accuracy:',accuracy_score(y_test,y_pred_binary))
+    print('Accuracy:', accuracy_score(y_test, y_pred_binary))
 
     return report, confusion_mat
 
-def main():
 
+def main():
+    """Makes a prediction and stores results in a folder."""
     input_folder = "data/interim"
 
     # check if model and load data exists

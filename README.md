@@ -38,9 +38,23 @@ Run the code using DVC:
 poetry run dvc repro
 ```
 
+## Running linters
+1. Install pylint and dslinter:
+   ```bash
+   pip install pylint==2.13
+   pip install dslinter
+   pip install flake8
+   ```
+2. Run pylint:
+   ```bash
+   pylint path\to\file.py
+   ```
+3. Run flake8:
+   ```bash
+   fla
+   ```
+
 ## Authors
-
-
 - EshaDutta
 - Vanessa Timmer
 - Maarten van Bijsterveldt 
@@ -50,3 +64,4 @@ poetry run dvc repro
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
