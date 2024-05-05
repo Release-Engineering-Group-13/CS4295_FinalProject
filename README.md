@@ -51,7 +51,7 @@ poetry run dvc repro
    ```
 3. Run flake8:
    ```bash
-   fla
+   flake8 --max-line-length=100 path\to\file.py
    ```
 
 ## Authors
