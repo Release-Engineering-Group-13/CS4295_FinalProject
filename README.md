@@ -11,10 +11,9 @@ To set up the project, follow these steps:
     git clone https://github.com/Release-Engineering-Group-13/CS4295_FinalProject.git
     ```
 
-2. Create and activate a virtual environment:
+2. Install Poetry
     ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
+    curl -sSL https://install.python-poetry.org | python3 -
     ```
 <!-- 3. Install the required dependencies:
     ```bash
