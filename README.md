@@ -25,6 +25,17 @@ To set up the project, follow these steps:
     poetry install
     ```
 
+Windows users might run into issues when trying to use Poetry for this project. In that case, use a venv virtual environment:
+2.  Create a virtual environment
+    ```bash
+    python -m venv yourenv
+    ```
+3. Install requirements in virtual environment
+    ```bash
+    path\to\yourenv\activate
+    pip install -r requirements.txt
+    ```
+
 4. Authentication
 
     In order to download the dataset, you must first authenticate using an kaggle API token. Go to the 'Account' tab of your user profile and select 'Create New Token'. This will trigger the download of kaggle.json, a file containing your API credentials.
@@ -39,17 +50,11 @@ poetry run dvc repro
 ```
 
 ## Running linters
-1. Install pylint and dslinter:
-   ```bash
-   pip install pylint==2.13
-   pip install dslinter
-   pip install flake8
-   ```
-2. Run pylint:
+1. Run pylint:
    ```bash
    pylint path\to\file.py
    ```
-3. Run flake8:
+2. Run flake8:
    ```bash
    flake8 --max-line-length=100 path\to\file.py
    ```
