@@ -5,21 +5,24 @@ stages:
     deps:
     - path: src/data/download_dataset.py
       hash: md5
-      md5: a1b374813815297902d04a68e874910e
-      size: 357
+      md5: 43a82f1e5cee25f2f6d10b0031775474
+      size: 344
     outs:
     - path: data/raw/DL Dataset/test.txt
       hash: md5
       md5: a1cab28ad8554fd9269d31e5708469d0
       size: 32724891
+      isexec: true
     - path: data/raw/DL Dataset/train.txt
       hash: md5
       md5: 13fd241a41370119612d5b00b0433009
       size: 93921671
+      isexec: true
     - path: data/raw/DL Dataset/val.txt
       hash: md5
       md5: 7b1e28b1e91582c6f36e85517c3cc6ee
       size: 46258330
+      isexec: true
   preprocessing:
     cmd: python src/preprocessing/preprocessing.py
     deps:
@@ -37,8 +40,8 @@ stages:
       size: 46258330
     - path: src/preprocessing/preprocessing.py
       hash: md5
-      md5: ef8b88ae467762db7d58471d10576c67
-      size: 2787
+      md5: 7cdad60ab2d9d2dd49026641d5d25f5d
+      size: 2709
     outs:
     - path: data/interim/char_index.joblib
       hash: md5
@@ -48,10 +51,11 @@ stages:
       hash: md5
       md5: 3a8ed50453840c8f1e45b95cb6f052c1
       size: 1540043570
+      isexec: true
     - path: data/interim/y_data.joblib
       hash: md5
-      md5: 9ca46db1fc2e283cc2388f5c571df792
-      size: 11883710
+      md5: 10e92ac598ab2028a2fae42cc4f88be4
+      size: 15400794
   model_train:
     cmd: python src/model/model_train.py
     deps:
