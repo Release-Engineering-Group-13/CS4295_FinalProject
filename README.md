@@ -25,11 +25,14 @@ To set up the project, follow these steps:
     poetry install
     ```
 
-Windows users might run into issues when trying to use Poetry for this project. In that case, use a venv virtual environment:
+
+Windows users might run into errors when trying to use Poetry for this project (see [open issue](https://github.com/tensorflow/io/issues/1789)). In that case, use a venv virtual environment:
+
 2.  Create a virtual environment
     ```bash
     python -m venv yourenv
     ```
+    
 3. Install requirements in virtual environment
     ```bash
     path\to\yourenv\activate
@@ -43,10 +46,15 @@ Windows users might run into issues when trying to use Poetry for this project. 
     If you are using the Kaggle CLI tool, the tool will look for this token at ~/.kaggle/kaggle.json on Linux, OSX, and other UNIX-based operating systems, and at C:\Users\<Windows-username>\.kaggle\kaggle.json on Windows. If the token is not there, an error will be raised. Hence, once you’ve downloaded the token, you should move it from your Downloads folder to this folder.
 
 ## Usage
-Run the code using DVC:
+Run the code using DVC (if using Poetry):
 
 ```bash
 poetry run dvc repro
+```
+
+If not using Poetry, run:
+```bash
+dvc repro
 ```
 
 ## Running linters
