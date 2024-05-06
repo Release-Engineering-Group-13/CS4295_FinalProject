@@ -55,7 +55,7 @@ poetry run dvc repro
    ```
 
 ## Authors
-- EshaDutta
+- Esha Dutta
 - Vanessa Timmer
 - Maarten van Bijsterveldt 
 - Nick Dubbeldam
